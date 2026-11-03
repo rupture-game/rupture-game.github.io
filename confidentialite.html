@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confidentialité — RUPTURE</title>
+<meta name="description" content="Ce que RUPTURE garde sur toi, pourquoi, combien de temps, et comment tout supprimer.">
+<meta name="theme-color" content="#040510">
+<link rel="canonical" href="https://rupture-game.github.io/confidentialite.html">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="docpage">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough" x="-5%" y="-150%" width="110%" height="400%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.7" numOctaves="2" seed="4"/>
+    <feDisplacementMap in="SourceGraphic" scale="5"/>
+  </filter>
+</svg>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="./"><img src="assets/favicon.png" alt="" width="30" height="30">RUPTURE</a>
+  <a class="back-site" href="./">← Retour au site</a>
+</header>
+
+<main class="doc">
+  <p class="kicker">Tes données</p>
+  <h1>Confidentialité</h1>
+  <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+  <p class="updated">Mise à jour : 3 novembre 2026</p>
+
+  <div class="tldr">
+    <strong>En bref</strong>
+    <ul>
+      <li>RUPTURE garde le strict nécessaire pour ton compte : pseudo, e-mail, mot de passe haché, services liés, résumé de tes parties.</li>
+      <li>Pas de pub, pas de pisteur, rien n'est vendu ni partagé à des fins commerciales.</li>
+      <li>Tu supprimes ton compte et tout ce qui va avec en un clic, depuis le jeu.</li>
+      <li>Ce site n'utilise aucun cookie.</li>
+    </ul>
+  </div>
+
+  <h2><span>01</span>Qui est responsable</h2>
+  <p>RUPTURE est un jeu gratuit développé par un développeur indépendant (Yoyotaa), responsable du traitement des données décrites ici. Pour toute question ou demande : <a href="mailto:jeu.rupture@gmail.com">jeu.rupture@gmail.com</a>.</p>
+
+  <h2><span>02</span>Ce site</h2>
+  <p>Ce site est hébergé par GitHub Pages. Il ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. Comme tout hébergeur, GitHub peut enregistrer l'adresse IP des visiteurs dans ses journaux techniques (voir la <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">déclaration de confidentialité de GitHub</a>). Pour afficher la dernière version du jeu, la page interroge l'API publique de GitHub depuis ton navigateur ; les téléchargements sont servis par GitHub.</p>
+
+  <h2><span>03</span>Ce que ton compte contient</h2>
+  <p>Un compte est nécessaire pour jouer. Voici tout ce que le serveur de RUPTURE garde :</p>
+  <div class="scroll-x">
+  <table class="table">
+    <thead><tr><th>Donnée</th><th>Pourquoi</th><th>Durée</th></tr></thead>
+    <tbody>
+      <tr><td>Pseudo</td><td>T'identifier dans les salons, le chat et les résultats.</td><td>Tant que le compte existe</td></tr>
+      <tr><td>Adresse e-mail</td><td>Code d'activation, changement d'adresse et mot de passe oublié. Jamais de newsletter ni de pub.</td><td>Tant que le compte existe</td></tr>
+      <tr><td>Mot de passe</td><td>Te connecter. Il est stocké sous forme d'empreinte (PBKDF2-SHA256, sel propre à chaque compte) : personne ne peut le relire, pas même le serveur.</td><td>Tant que le compte existe</td></tr>
+      <tr><td>Services liés</td><td>Si tu te connectes avec Discord, Google ou Steam : l'identifiant de ton compte chez ce service, le nom affiché et, s'il est fourni, l'e-mail vérifié.</td><td>Jusqu'à ce que tu délies le service ou supprimes le compte</td></tr>
+      <tr><td>Sessions</td><td>Rester connecté : empreinte du jeton de session, nom de l'appareil (système et modèle), dates de création et de dernière utilisation.</td><td>Expire après 180 jours sans utilisation, ou à la déconnexion</td></tr>
+      <tr><td>Dernière connexion</td><td>Date et adresse IP de la dernière connexion, pour la sécurité (limiter les tentatives, repérer un abus).</td><td>Remplacée à chaque connexion</td></tr>
+      <tr><td>Historique</td><td>Résumé de tes parties (mode, arène, durée, persos, KO, dégâts, résultat) pour le retrouver sur toutes tes machines. Toi seul le vois. Le détail complet des parties reste sur ton ordinateur.</td><td>Les 2000 dernières parties</td></tr>
+      <tr><td>Compteurs</td><td>Nombre de parties et de victoires, affichés sur ton profil.</td><td>Tant que le compte existe</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Un compte créé par e-mail mais jamais confirmé est supprimé au bout de 48 heures. Les codes envoyés par e-mail sont valables 15 minutes.</p>
+
+  <h2><span>04</span>Jouer en ligne</h2>
+  <p>Pour te mettre en relation avec les autres joueurs, le serveur voit ton adresse IP et la transmet aux joueurs du salon que tu rejoins (connexion directe). Si la connexion directe échoue, les échanges passent par un relais du serveur, qui se contente de faire suivre les paquets. Le chat des salons circule entre les joueurs et n'est pas enregistré par le serveur. Les journaux techniques du serveur (connexions, erreurs) sont conservés 30 jours au plus.</p>
+
+  <h2><span>05</span>Connexion avec Discord, Google ou Steam</h2>
+  <p>Si tu choisis l'un de ces services, RUPTURE demande seulement de quoi t'identifier :</p>
+  <ul>
+    <li><strong>Discord</strong> : <code>identify</code> et <code>email</code> (identifiant, nom, adresse e-mail).</li>
+    <li><strong>Google</strong> : <code>openid</code>, <code>email</code> et <code>profile</code> (identifiant, nom, adresse e-mail).</li>
+    <li><strong>Steam</strong> : connexion OpenID (identifiant Steam et nom public).</li>
+  </ul>
+  <p>RUPTURE ne lit ni tes messages, ni tes contacts, ni tes jeux, ni rien d'autre, et ne publie rien en ton nom. L'utilisation et le transfert à toute autre application des informations reçues des API Google respectent les <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">règles relatives aux données utilisateur des services d'API Google</a> (Google API Services User Data Policy), y compris les exigences d'utilisation limitée (Limited Use). Ces informations servent uniquement à créer ton compte RUPTURE et à t'y connecter.</p>
+
+  <h2><span>06</span>Où sont les données, et qui les traite</h2>
+  <ul>
+    <li><strong>Oracle Cloud</strong> : héberge le serveur du jeu (centre de données de Marseille, France).</li>
+    <li><strong>Brevo</strong> (France) : envoie les e-mails (codes d'activation et de réinitialisation). Il reçoit ton adresse e-mail et le contenu du message.</li>
+    <li><strong>GitHub</strong> : héberge ce site, les téléchargements du jeu et le fichier lu par la mise à jour intégrée.</li>
+  </ul>
+  <p>Aucune donnée n'est vendue, louée ou partagée à des fins publicitaires. Rien n'est utilisé pour entraîner une intelligence artificielle.</p>
+
+  <h2><span>07</span>Sur ton ordinateur</h2>
+  <p>Le jeu garde sur ta machine : ta session (fichier chiffré avec un identifiant propre à l'ordinateur), tes réglages et le détail de tes 200 dernières parties. Au lancement et au retour au menu, il vérifie s'il existe une mise à jour en lisant un fichier sur GitHub.</p>
+
+  <h2><span>08</span>Pourquoi on a le droit (bases légales)</h2>
+  <ul>
+    <li><strong>Exécution du service</strong> (article 6.1.b du RGPD) : compte, connexion, historique, jeu en ligne.</li>
+    <li><strong>Intérêt légitime</strong> (article 6.1.f) : sécurité du serveur et lutte contre les abus (adresse IP, journaux, limites de tentatives).</li>
+  </ul>
+
+  <h2><span>09</span>Tes droits</h2>
+  <p>Tu peux accéder à tes données, les corriger, les supprimer, en demander une copie, t'opposer à un traitement ou le limiter.</p>
+  <ul>
+    <li><strong>Supprimer ton compte</strong> : dans le jeu, <em>Profil → Supprimer mon compte</em>. Le compte, ses services liés, ses sessions et l'historique gardé sur le serveur sont effacés immédiatement.</li>
+    <li><strong>Pseudo, e-mail, mot de passe, services liés</strong> : modifiables depuis ton profil.</li>
+    <li><strong>Toute autre demande</strong> : écris à <a href="mailto:jeu.rupture@gmail.com">jeu.rupture@gmail.com</a> depuis l'adresse de ton compte. Réponse sous un mois au plus.</li>
+  </ul>
+  <p>Si tu estimes que tes droits ne sont pas respectés, tu peux saisir la <a href="https://www.cnil.fr/fr/plaintes" rel="noopener">CNIL</a>.</p>
+
+  <h2><span>10</span>Âge minimum</h2>
+  <p>Il faut avoir au moins 15 ans pour créer un compte. Si tu apprends qu'un enfant plus jeune a créé un compte, écris-nous : il sera supprimé.</p>
+
+  <h2><span>11</span>Sécurité</h2>
+  <p>Le jeu et le serveur communiquent par une liaison chiffrée (TLS, certificat vérifié par le jeu). Les mots de passe et les jetons de session ne sont jamais stockés en clair. Les tentatives de connexion et les demandes de code sont limitées.</p>
+
+  <h2><span>12</span>Changements</h2>
+  <p>Si cette page change de façon importante, la date en haut est mise à jour et le changement est signalé dans les notes de mise à jour du jeu.</p>
+
+  <h2><span>13</span>Mentions légales</h2>
+  <p>Éditeur : Yoyotaa, développeur indépendant, non professionnel — <a href="mailto:jeu.rupture@gmail.com">jeu.rupture@gmail.com</a>.<br>
+  Hébergeur du site : GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+  <a class="slab small back" href="./">← Retour au site</a>
+</main>
+
+<footer>
+  <a class="brand" href="./"><img src="assets/favicon.png" alt="" width="24" height="24">RUPTURE</a>
+  <span>Un jeu indépendant, fait à la main en France.</span>
+  <nav aria-label="Liens légaux">
+    <a href="confidentialite.html">Confidentialité</a>
+    <a href="conditions.html">Conditions d'utilisation</a>
+    <a href="mailto:jeu.rupture@gmail.com">Contact</a>
+  </nav>
+</footer>
+</body>
+</html>

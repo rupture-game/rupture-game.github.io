@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RUPTURE — platform fighter</title>
+<meta name="description" content="RUPTURE, un platform fighter 2D gratuit : 16 combattants, 5 arènes, jusqu'à 10 joueurs sur un écran, tournois et parties en ligne. Windows et macOS.">
+<meta name="theme-color" content="#040510">
+<link rel="canonical" href="https://rupture-game.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RUPTURE — la réalité est brisée">
+<meta property="og:description" content="Platform fighter 2D gratuit : 16 combattants, jusqu'à 10 joueurs, en local et en ligne.">
+<meta property="og:image" content="https://rupture-game.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough" x="-5%" y="-150%" width="110%" height="400%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.7" numOctaves="2" seed="4"/>
+    <feDisplacementMap in="SourceGraphic" scale="5"/>
+  </filter>
+</svg>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- fil d'encre : la progression dans la page -->
+<div class="inkline" aria-hidden="true">
+  <svg viewBox="0 0 22 1000" preserveAspectRatio="none">
+    <path class="track" d="M11 0 C 4 120, 18 240, 11 360 S 4 600, 11 720 S 18 900, 11 1000"/>
+    <path class="fill" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M11 0 C 4 120, 18 240, 11 360 S 4 600, 11 720 S 18 900, 11 1000"/>
+  </svg>
+</div>
+
+<header class="nav">
+  <a class="brand" href="#top"><img src="assets/favicon.png" alt="" width="30" height="30">RUPTURE</a>
+  <ul>
+    <li><a href="#jeu">Le jeu</a></li>
+    <li><a href="#combattants">Combattants</a></li>
+    <li><a href="#arenes">Arènes</a></li>
+    <li><a href="#compte">Compte</a></li>
+  </ul>
+  <a class="slab ink small" href="#telecharger">Télécharger</a>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================ HÉROS -->
+  <section class="hero" aria-labelledby="titre">
+    <div>
+      <h1 id="titre" aria-label="RUPTURE">
+        <span aria-hidden="true">
+          <span class="l" style="--i:0;--r:-8deg">R</span><span class="l" style="--i:1;--r:5deg">U</span><span class="l" style="--i:2;--r:-3deg">P</span><span class="l" style="--i:3;--r:9deg">T</span><span class="l" style="--i:4;--r:-6deg">U</span><span class="l" style="--i:5;--r:4deg">R</span><span class="l" style="--i:6;--r:-10deg">E</span>
+        </span>
+        <svg class="crack" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M0 18 L120 14 L190 21 L260 9 L330 16 L420 12 L470 22 L560 8 L640 17 L720 11 L790 19 L880 10 L1000 15"/>
+        </svg>
+      </h1>
+      <p class="sub">PLATFORM FIGHTER</p>
+      <svg class="brush drawn" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+      <p class="lead">La réalité est brisée. Seize combattants se battent dans ses éclats&nbsp;: sorts, parades, ultis de cinéma, jusqu'à dix sur le même écran.</p>
+      <div class="cta">
+        <a class="slab ink" href="#telecharger">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg>
+          Télécharger gratuitement</a>
+        <a class="slab" href="#combattants">Les combattants</a>
+      </div>
+      <p class="meta"><span data-version>Windows · macOS</span> · gratuit · manette ou clavier</p>
+    </div>
+
+    <div class="shardhero" aria-hidden="true">
+      <svg class="ink-swash" viewBox="0 0 600 300" preserveAspectRatio="none"><path d="M40 210 C 160 120, 300 230, 560 90"/></svg>
+      <div class="frame"></div>
+      <div class="who"><b data-who-name>NYX</b><span data-who-title>L'Ombre</span><q data-who-line>Chaque pas laisse une ombre.</q></div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">Défile<i></i></div>
+  </section>
+
+  <!-- ============================================================ LA RUPTURE : chaque vitre vole en éclats au défilement -->
+  <section class="shatter" id="jeu" style="--panes:4" aria-label="Le jeu en images">
+    <div class="stage">
+      <canvas aria-hidden="true"></canvas>
+      <div class="vignette"></div>
+      <p class="hint" data-hint>Continue de défiler : la vitre va céder</p>
+      <div class="caption">
+        <div class="cap" data-img="assets/shots/chaos.jpg">
+          <span class="num">01 — LOCAL</span>
+          <h3>Dix sur un écran</h3>
+          <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+          <p>Manettes, clavier, bots&nbsp;: un contre un, équipes ou chaos total. Tout le monde sur le même canapé.</p>
+          <img class="sr-only" src="assets/shots/chaos.jpg" alt="Une partie à dix joueurs, l'écran rempli de sorts">
+        </div>
+        <div class="cap" data-img="assets/shots/arene_dojo.jpg">
+          <span class="num">02 — COMBAT</span>
+          <h3>Seize kits, aucun clone</h3>
+          <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+          <p>Ombres, foudre, glace, temps, poison, tourelles… chaque combattant joue à sa façon, avec sa propre parade.</p>
+          <img class="sr-only" src="assets/shots/arene_dojo.jpg" alt="Combat au Dojo Céleste">
+        </div>
+        <div class="cap" data-img="assets/shots/salons.jpg">
+          <span class="num">03 — EN LIGNE</span>
+          <h3>Un code, une partie</h3>
+          <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+          <p>Crée un salon, donne son code, joue. Rien à ouvrir sur ta box&nbsp;: le jeu trouve le chemin tout seul.</p>
+          <img class="sr-only" src="assets/shots/salons.jpg" alt="L'écran des salons en ligne">
+        </div>
+        <div class="cap" data-img="assets/shots/resultats.jpg">
+          <span class="num">04 — HISTOIRE</span>
+          <h3>Chaque partie laisse une trace</h3>
+          <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+          <p>Distinctions, sort favori, courbe des dégâts. Ton historique te suit sur toutes tes machines.</p>
+          <img class="sr-only" src="assets/shots/resultats.jpg" alt="L'écran de résultats d'une partie">
+        </div>
+      </div>
+      <div class="counter"><b data-count>01</b>/ 04</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CHIFFRES -->
+  <section class="stats watch" aria-label="RUPTURE en chiffres">
+    <div class="stat" style="--i:0"><b data-to="16">0</b><span>combattants</span></div>
+    <div class="stat" style="--i:1"><b data-to="10">0</b><span>joueurs à la fois</span></div>
+    <div class="stat" style="--i:2"><b data-to="5">0</b><span>arènes</span></div>
+    <div class="stat" style="--i:3"><b data-to="0" data-suffix="€">0</b><span>c'est gratuit</span></div>
+  </section>
+
+  <!-- ============================================================ COMBATTANTS : défilement horizontal -->
+  <section class="roster" id="combattants" aria-label="Les combattants">
+    <div class="pin">
+      <div class="track">
+        <div class="intro watch">
+          <p class="kicker">Le casting</p>
+          <span class="big" aria-hidden="true">16</span>
+          <h2 class="h2"><span class="w"><span>Combattants</span></span></h2>
+          <p class="lead">Chacun son kit, sa parade et son ulti. Continue de défiler&nbsp;: ils passent un par un.</p>
+        </div>
+        <!-- cartes ajoutées par main.js -->
+      </div>
+      <div class="progress"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ARÈNES : mosaïque de verre -->
+  <section class="arenas" id="arenes" aria-label="Les arènes">
+    <div class="section-head watch">
+      <p class="kicker">Cinq terrains</p>
+      <h2 class="h2"><span class="w"><span>Les</span></span> <span class="w"><span>arènes</span></span></h2>
+      <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+      <p class="lead">Une vitre, cinq éclats. Chaque morceau est une arène&nbsp;: clique pour la voir en entier.</p>
+    </div>
+    <div class="mosaic" data-mosaic>
+      <div class="piece" role="button" tabindex="0" data-name="Sanctuaire Néon" data-theme="Néon" style="--poly: 0 0, 46% 0, 55% 48%, 0 38%, 0 38%; --dx:-30vw; --dy:-22vh; --dr:-18deg; --ox:20%">
+        <img src="assets/shots/arene_sanctuaire.jpg" alt="Arène Sanctuaire Néon" loading="lazy"></div>
+      <div class="piece" role="button" tabindex="0" data-name="Citadelle Écarlate" data-theme="Volcan" style="--poly: 46% 0, 100% 0, 100% 30%, 55% 48%, 55% 48%; --dx:32vw; --dy:-26vh; --dr:22deg; --ox:80%">
+        <img src="assets/shots/arene_citadelle.jpg" alt="Arène Citadelle Écarlate" loading="lazy"></div>
+      <div class="piece" role="button" tabindex="0" data-name="Temple des Brumes" data-theme="Ciel" style="--poly: 100% 30%, 100% 100%, 70% 100%, 55% 48%, 55% 48%; --dx:34vw; --dy:20vh; --dr:-16deg; --ox:85%">
+        <img src="assets/shots/arene_temple.jpg" alt="Arène Temple des Brumes" loading="lazy"></div>
+      <div class="piece" role="button" tabindex="0" data-name="Nexus Orbital" data-theme="Orbite" style="--poly: 70% 100%, 22% 100%, 55% 48%, 55% 48%, 55% 48%; --dx:4vw; --dy:34vh; --dr:14deg; --ox:50%">
+        <img src="assets/shots/arene_nexus.jpg" alt="Arène Nexus Orbital" loading="lazy"></div>
+      <div class="piece" role="button" tabindex="0" data-name="Dojo Céleste" data-theme="Dojo" style="--poly: 22% 100%, 0 100%, 0 38%, 55% 48%, 55% 48%; --dx:-34vw; --dy:22vh; --dr:20deg; --ox:15%">
+        <img src="assets/shots/arene_dojo.jpg" alt="Arène Dojo Céleste" loading="lazy"></div>
+      <svg class="cracks" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M46 0 L55 48 L0 38"/><path d="M55 48 L100 30"/><path d="M55 48 L70 100"/><path d="M55 48 L22 100"/>
+        <path d="M55 48 L58 44 L63 45 M55 48 L52 52 L49 51" style="opacity:.6"/>
+      </svg>
+      <div class="label" style="--lx:24%; --ly:22%"><b>Sanctuaire Néon</b><span>Néon</span></div>
+      <div class="label" style="--lx:76%; --ly:17%"><b>Citadelle Écarlate</b><span>Volcan</span></div>
+      <div class="label" style="--lx:82%; --ly:66%"><b>Temple des Brumes</b><span>Ciel</span></div>
+      <div class="label" style="--lx:48%; --ly:84%"><b>Nexus Orbital</b><span>Orbite</span></div>
+      <div class="label" style="--lx:16%; --ly:70%"><b>Dojo Céleste</b><span>Dojo</span></div>
+      <div class="openinfo" aria-live="polite"><b data-open-name></b><span data-open-theme></span></div>
+    </div>
+    <p class="mosaic-hint">Clique un éclat · Échap pour refermer</p>
+  </section>
+
+  <!-- ============================================================ FONCTIONS -->
+  <section class="features watch" aria-label="Ce qu'il y a dans le jeu">
+    <article class="feat" style="--i:0">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M24 4 30 18 44 20 33 30 36 44 24 37 12 44 15 30 4 20 18 18Z"/></svg>
+      <h3>Tournois</h3>
+      <p>Élimination simple ou double, poules, championnat ou ligue Mix en 1v1 et 2v2. Bans de persos avant chaque série, arbre en direct.</p>
+    </article>
+    <article class="feat" style="--i:1">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 14h36M6 24h36M6 34h36"/><circle cx="16" cy="14" r="4" fill="#040510"/><circle cx="32" cy="24" r="4" fill="#040510"/><circle cx="20" cy="34" r="4" fill="#040510"/></svg>
+      <h3>Parties sur mesure</h3>
+      <p>Trois contre un avec un boss compensé, équipes déséquilibrées, limite de temps, nombre de vies&nbsp;: tu règles tout.</p>
+    </article>
+    <article class="feat" style="--i:2">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="14" width="28" height="22" rx="4"/><path d="M24 6v8M18 24h.01M30 24h.01M18 31h12"/></svg>
+      <h3>Des bots qui jouent</h3>
+      <p>Trois niveaux. Ils gardent le bord, punissent tes erreurs, parent et enchaînent. Parfaits pour remplir une partie à dix.</p>
+    </article>
+    <article class="feat" style="--i:3">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M6 24h36M24 6c6 6 6 30 0 36M24 6c-6 6-6 30 0 36"/></svg>
+      <h3>En ligne</h3>
+      <p>Salons publics ou privés, mot de passe, chat, spectateurs. Connexion directe quand c'est possible, relais sinon.</p>
+    </article>
+    <article class="feat" style="--i:4">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 30l10-10 8 8 14-16"/><path d="M30 12h10v10"/></svg>
+      <h3>Ton historique</h3>
+      <p>Chaque partie enregistrée&nbsp;: résultat, KO, dégâts, sort favori. Rouvre l'écran de résultats d'un vieux match quand tu veux.</p>
+    </article>
+    <article class="feat" style="--i:5">
+      <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 24a16 16 0 1 1-4.7-11.3M40 8v8h-8"/></svg>
+      <h3>Toujours à jour</h3>
+      <p>Le jeu se met à jour tout seul au lancement. Nouveaux persos, équilibrage, corrections&nbsp;: rien à retélécharger.</p>
+    </article>
+  </section>
+
+  <!-- ============================================================ CINÉMATIQUE D'ULTI -->
+  <section class="cine" aria-label="Les ultis">
+    <div class="pin">
+      <img src="assets/shots/ulti.jpg" alt="Cinématique de l'ulti d'Ignis, Soleil Noir" loading="lazy">
+      <div class="bar t"></div><div class="bar b"></div>
+      <div class="banner"><b>ULTI</b><span>Une cinématique par combattant</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ COMPTE -->
+  <section class="account watch" id="compte" aria-labelledby="t-compte">
+    <div>
+      <p class="kicker">Un compte, partout</p>
+      <h2 class="h2" id="t-compte"><span class="w"><span>Ton</span></span> <span class="w"><span>compte</span></span></h2>
+      <svg class="brush" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true" style="width:min(380px,70%);margin-top:10px"><path pathLength="1" d="M6 15 C 70 6, 130 20, 200 11 S 330 16, 394 9"/></svg>
+      <p class="lead">Ton pseudo, tes stats et ton historique te suivent d'une machine à l'autre. Tu restes connecté d'une session à l'autre, et tu peux jouer hors ligne si le serveur ne répond pas.</p>
+      <p class="promise">Rien n'est revendu ni partagé, pas de pub. Tu supprimes ton compte et tout ce qui va avec en un clic, depuis ton profil.
+        <a href="confidentialite.html">Ce que RUPTURE garde sur toi</a>.</p>
+    </div>
+    <div class="providers">
+      <div class="prov" style="--i:0"><svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="#5865F2"/><text x="14" y="19.5" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Jost, sans-serif">D</text></svg>Discord</div>
+      <div class="prov" style="--i:1"><svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="#fff"/><text x="14" y="19.5" text-anchor="middle" font-size="15" font-weight="700" fill="#4285F4" font-family="Jost, sans-serif">G</text></svg>Google</div>
+      <div class="prov" style="--i:2"><svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="#1b2838"/><text x="14" y="19.5" text-anchor="middle" font-size="15" font-weight="700" fill="#66c0f4" font-family="Jost, sans-serif">S</text></svg>Steam</div>
+      <div class="prov" style="--i:3"><svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="#e0243a"/><text x="14" y="19.5" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="Jost, sans-serif">@</text></svg>E-mail</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TÉLÉCHARGER -->
+  <section class="download watch" id="telecharger" aria-labelledby="t-dl">
+    <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="rgba(204,214,255,.10)" stroke-width=".15">
+      <circle cx="50" cy="50" r="8"/><circle cx="50" cy="50" r="17"/><circle cx="50" cy="50" r="29"/><circle cx="50" cy="50" r="44"/>
+      <path d="M50 50 L95 38 M50 50 L80 92 M50 50 L18 86 M50 50 L6 30 M50 50 L44 4 M50 50 L88 8"/></g>
+      <path d="M50 50 L58 46 L66 49 L75 44" fill="none" stroke="rgba(224,36,58,.5)" stroke-width=".3"/></svg>
+    <p class="kicker">Gratuit</p>
+    <h2 class="h2" id="t-dl"><span class="w"><span>Brise</span></span> <span class="w"><span>la</span></span> <span class="w"><span>vitre</span></span></h2>
+    <p class="lead">Télécharge, dézippe, joue. Le jeu se met à jour tout seul ensuite.</p>
+    <div class="btns">
+      <a class="slab ink" data-dl="windows" href="https://github.com/Yoyotaa/rupture-releases/releases/latest">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.2 10.4 4v7.3H3zM11.4 3.9 21 2.5v8.8h-9.6zM3 12.3h7.4v7.4L3 18.6zM11.4 12.3H21v9.2l-9.6-1.4z"/></svg>
+        Windows</a>
+      <a class="slab" data-dl="macos" href="https://github.com/Yoyotaa/rupture-releases/releases/latest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-2-4H4z"/></svg>
+        macOS</a>
+    </div>
+    <p class="ver" data-version-long>Dernière version sur GitHub</p>
+  </section>
+</main>
+
+<footer>
+  <a class="brand" href="#top"><img src="assets/favicon.png" alt="" width="24" height="24">RUPTURE</a>
+  <span>Un jeu indépendant, fait à la main en France.</span>
+  <nav aria-label="Liens légaux">
+    <a href="confidentialite.html">Confidentialité</a>
+    <a href="conditions.html">Conditions d'utilisation</a>
+    <a href="mailto:jeu.rupture@gmail.com">Contact</a>
+  </nav>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
